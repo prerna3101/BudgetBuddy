@@ -1,34 +1,78 @@
-function ExpenseList(){
+import type { Expense } from "../types/Expense";
+import { formatCurrency } from "../utils/formatCurrency";
+import { formatDate } from "../utils/formatDate";
 
-return(
+interface Props {
+  expenses: Expense[];
+  deleteExpense: (id: string) => void;
+}
 
-<div className="card rounded-4 shadow-sm">
+function ExpenseList({
+  expenses,
+  deleteExpense,
+}: Props) {
+  if (expenses.length === 0) {
+    return (
+      <div className="card shadow-sm rounded-4">
+        <div className="card-body text-center py-5">
+          <h4>No expenses found</h4>
+        </div>
+      </div>
+    );
+  }
 
-<div className="card-body text-center py-5">
+  return (
+    <div className="card shadow-sm rounded-4">
+      <div className="card-body">
+        <table className="table align-middle">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
 
-<i
-className="bi bi-wallet2"
-style={{fontSize:"60px",color:"var(--primary)"}}
-></i>
+          <tbody>
+            {expenses.map((expense) => (
+              <tr key={expense.id}>
+                <td>{expense.title}</td>
+                <td>
+                <span className="badge bg-warning text-dark px-3 py-2">
 
-<h4 className="mt-3">
+                {expense.category}
 
-No expenses yet!
+                </span>
+                </td>
+                <td>{formatCurrency(expense.amount)}</td>
+                <td>{formatDate(expense.date)}</td>
+                <td>
+                    <button
+                    className="btn btn-outline-danger btn-sm"
+                    onClick={() => {
 
-</h4>
+                    if(window.confirm("Delete this expense?")){
 
-<p>
+                    deleteExpense(expense.id);
 
-Start by adding your first expense.
+                    }
 
-</p>
+                    }}
+                    >
 
-</div>
+                    <i className="bi bi-trash"></i>
 
-</div>
-
-);
-
+                    </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default ExpenseList;

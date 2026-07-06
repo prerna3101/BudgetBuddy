@@ -1,27 +1,29 @@
-function CategoryFilter(){
+import { categories } from "../data/categories";
 
-return(
+interface Props {
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+}
 
-<div className="mb-4">
+function CategoryFilter({
+  selectedCategory,
+  setSelectedCategory,
+}: Props) {
+  return (
+    <div className="mb-4">
+      <select
+        className="form-select"
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+      >
+        <option value="All">All Categories</option>
 
-<select className="form-select">
-
-<option>All Categories</option>
-
-<option>Food</option>
-
-<option>Shopping</option>
-
-<option>Bills</option>
-
-<option>Travel</option>
-
-</select>
-
-</div>
-
-);
-
+        {categories.map((category) => (
+          <option key={category}>{category}</option>
+        ))}
+      </select>
+    </div>
+  );
 }
 
 export default CategoryFilter;

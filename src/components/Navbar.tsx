@@ -1,6 +1,8 @@
+import { formatDate } from "../utils/formatDate";
+
 function Navbar() {
 
-const today=new Date().toLocaleDateString();
+const today=formatDate(new Date().toISOString());
 
 return(
 
