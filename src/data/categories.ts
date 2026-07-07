@@ -3,9 +3,7 @@ export const categories = [
   "Shopping",
   "Bills",
   "Transport",
-  "Entertainment",
   "Health",
   "Education",
-  "Travel",
   "Other",
 ];

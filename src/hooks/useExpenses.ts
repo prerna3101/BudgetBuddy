@@ -17,9 +17,18 @@ export const useExpenses = () => {
     setExpenses((prev) => prev.filter((expense) => expense.id !== id));
   };
 
+  const updateExpense = (updatedExpense: Expense) => {
+  setExpenses((prev) =>
+    prev.map((expense) =>
+      expense.id === updatedExpense.id ? updatedExpense : expense
+    )
+  );
+};
+
   return {
     expenses,
     addExpense,
     deleteExpense,
+    updateExpense,
   };
 };

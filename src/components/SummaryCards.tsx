@@ -2,6 +2,7 @@ import type { Expense } from "../types/Expense";
 import { calculateTotals } from "../utils/calculateTotals";
 import { formatCurrency } from "../utils/formatCurrency";
 
+
 interface Props {
   expenses: Expense[];
 }
@@ -15,6 +16,7 @@ function SummaryCards({ expenses }: Props) {
         <div className="card rounded-4 shadow-sm">
           <div className="card-body">
             <h6>Total Expense</h6>
+            <i className="bi bi-cash-stack fs-2 text-warning"></i>
             <h4>{formatCurrency(totals.totalExpense)}</h4>
           </div>
         </div>
@@ -24,6 +26,7 @@ function SummaryCards({ expenses }: Props) {
         <div className="card rounded-4 shadow-sm">
           <div className="card-body">
             <h6>Highest Expense</h6>
+            <i className="bi bi-graph-up-arrow fs-2 text-warning"></i>
             <h4>{formatCurrency(totals.highestExpense)}</h4>
           </div>
         </div>
@@ -33,6 +36,7 @@ function SummaryCards({ expenses }: Props) {
         <div className="card rounded-4 shadow-sm">
           <div className="card-body">
             <h6>Transactions</h6>
+            <i className="bi bi-receipt fs-2 text-warning"></i>
             <h4>{totals.totalTransactions}</h4>
           </div>
         </div>
@@ -42,6 +46,7 @@ function SummaryCards({ expenses }: Props) {
         <div className="card rounded-4 shadow-sm">
           <div className="card-body">
             <h6>Categories</h6>
+            <i className="bi bi-grid fs-2 text-warning"></i>
             <h4>{totals.uniqueCategories}</h4>
           </div>
         </div>
